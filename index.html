@@ -99,13 +99,13 @@
     	<table class="tableTitle">
         	<thead>
             	<tr>
-                	<th class="tableTitle">Weapon</th>
+                	<th class="tableTitle">Weapons</th>
                 </tr>
             </thead>
             <tbody>
             	<tr>
                 	<td>
-                    	<table id="weapon">
+                    	<table id="weapons">
                         	<thead>
                             	<tr>
                                 	<th>Type</th>
@@ -142,8 +142,32 @@
                                 	</td>
                                     <td><input id="weaponMaxDmg" placeholder="0" /></td>
                                     <td><input id="weaponMinDmg" placeholder="0" /></td>
-                                    <td><ul><button class="addButton" onclick="createStat(this)">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton" onclick="createBuff(this)">Add Buff</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
+                                </tr>
+                                <tr>
+                                	<td>
+                                    	<select id="offHandType">
+                                        	<option value="shield" selected="selected">Shield</option>
+                                            <option value="nWeapon">Mojo</option>
+                                            <option value="nWeapon">Source of Power</option>
+                                            <option value="nWeapon">Quiver</option>
+                                            <option value="01.20">Default Weapon</option>
+                                            <option value="1.3">Axe</option>
+                                            <option value="001.400">Ceremonial Knife</option>
+                                            <option value="1.5">Dagger</option>
+                                            <option value="0001.4000">Fist Weapon</option>
+                                            <option value="1.6">Hand Crossbow</option>
+                                            <option value="1.2">Mace</option>
+                                            <option value="01.30">Mighty Weapon</option>
+                                            <option value="00001.40000">Sword</option>
+                                            <option value="1.4">Wand</option>
+                                        </select>
+                                	</td>
+                                    <td><input id="weaponMaxDmg" placeholder="0" /></td>
+                                    <td><input id="weaponMinDmg" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
                             </tbody>
                         </table>

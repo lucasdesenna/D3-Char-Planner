@@ -86,6 +86,7 @@ table {
 
 table input {
 	width: 98%;
+	height: 100%;
 	text-align: center;
 }
 
@@ -109,6 +110,7 @@ table.tableTitle {
 }
 
 table thead tr th.tableTitle {
+	font-size: 110%;
 	color: #FFF !important;
 	padding: 8px;
 	background-color: #39F;
@@ -134,8 +136,24 @@ table#secStats td{
 	width: 33%;
 }
 
-table#weapon tr td, table#weapon tr th {
+table#weapon tr td, table#weapons tr th {
 	width: 20%;
+}
+
+table#weapons ul li select {
+	display: inline-block;
+	width: 54px;
+}
+
+table#weapons ul li input {
+	display: inline-block;
+	width: 76px;
+	margin-right: 2px;
+}
+
+table#weapons ul li button {
+	display: inline-block;
+	width: 20px; 
 }
 
 table#equips tr td, table#equips tr th {
@@ -144,12 +162,6 @@ table#equips tr td, table#equips tr th {
 
 table#equips tr td:first-child, table#equips tr th:first-child {
 	width: 10%;
-}
-
-table#equips tr td input {
-	width: 98%;
-	height: 100%;
-	text-align: center;
 }
 
 table#equips thead tr th:first-child {
@@ -162,11 +174,11 @@ table#equips tbody tr th:first-child {
 	background-color: #39F;
 }
 
-table#equips ul {
+table ul {
 	list-style: none;
 }
 
-table#equips ul li {
+table ul li {
 	margin-top: 2px
 }
 
