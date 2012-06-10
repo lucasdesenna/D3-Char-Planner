@@ -7,13 +7,14 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 75%;
+	background-color: #DDD;
 }
 
 #header {
 	position:fixed;
 	top: 0;
 	width:100%;
-	background-color: #FFF;
+	background-color: #DDD;
 }
 
 #header a {
@@ -56,10 +57,16 @@ input#charLevel {
 	border: #39F solid 2px;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
+	background-color: #FFF;
+}
+
+.tab:hover {
+	border-color: #FFF;
 }
 
 .tab.selected {
 	color: #FFF !important;
+	border-color: #39F;
 	background-color: #39F;
 }
 
@@ -89,6 +96,10 @@ table select {
 thead {
 	color: #FFF;
 	background-color: #39F;
+}
+
+table td {
+	background-color: #FFF;
 }
 
 table.tableTitle {
