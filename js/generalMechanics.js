@@ -23,6 +23,10 @@ function updateChar() {
 	$("input#charLevel").val(charLevel.toString());
 	charName = $("input#charName").val();
 	charClass = $("select#charClass option:selected").val();
+	if(charClass == "Barbarian") { barbGen(); }
+	if(charClass == "Demon Hunter") { dhGen(); }
+	if(charClass == "Monk") { monkGen(); }
+	if(charClass == "Witch Doctor") { wdGen(); }
 	if(charClass == "Wizard") { wizGen(); }
 }
 
