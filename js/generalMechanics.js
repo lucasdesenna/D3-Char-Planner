@@ -36,7 +36,8 @@ function getArmor() {
 }
 
 function getHP() {
-	charHP = charVit * 35 + 276;
+	if(charLevel > 35) { charHP = charVit * (charLevel - 25) + 36 + charLevel * 4; }
+	else { charHP = charVit * 10 + 36 + charLevel * 4; }
 	$("#HP").html(charHP);
 }
 
