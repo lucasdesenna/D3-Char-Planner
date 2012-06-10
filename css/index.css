@@ -30,7 +30,7 @@ body {
 #content {
 	width: 800px;
 	margin: 0 auto;
-	margin-top: 141px;
+	margin-top: 197px;
 }
 
 form#charInfo {
@@ -94,7 +94,7 @@ thead {
 table.tableTitle {
 	border-collapse: collapse;
 	border: #39F solid 2px; 
-	margin-bottom: 8px;
+	margin-bottom: 16px;
 }
 
 table thead tr th.tableTitle {
@@ -112,17 +112,11 @@ table tr td.tableDetails {
 }
 
 table tr td.tableDetails:hover {
-	background-color: #36C;
+	background-color: #28D;
 }
 
 table#mainStats td {
 	width: 16.6%;
-}
-
-table#secStats {
-	margin-bottom: 8px;
-	padding-bottom: 4px;
-	border-bottom: #39F solid 2px;
 }
 
 table#secStats td{

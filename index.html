@@ -27,45 +27,66 @@
             <div class="spacer"></div>
             <a class="tab" href="">Item Comparison</a>
             <div class="spacer"></div>
-            
-            <table id="mainStats">
-                <thead>
-                    <tr>
-                        <th>Str</th>
-                        <th>Dex</th>
-                        <th>Int</th>
-                        <th>Vit</th>
-                        <th>Armor</th>
-                        <th>HP</th>
+            <table class="tableTitle">
+            	<thead>
+                	<tr>
+                    	<th class="tableTitle">Main Stats</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td id="Str">0</td>
-                        <td id="Dex">0</td>
-                        <td id="Int">0</td>
-                        <td id="Vit">0</td>
-                        <td id="Armor">0</td>
-                        <td id="HP">0</td>
+                	<tr>
+                    	<td>
+                            <table id="mainStats">
+                                <thead>
+                                    <tr>
+                                        <th>Str</th>
+                                        <th>Dex</th>
+                                        <th>Int</th>
+                                        <th>Vit</th>
+                                        <th>Armor</th>
+                                        <th>HP</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="Str">0</td>
+                                        <td id="Dex">0</td>
+                                        <td id="Int">0</td>
+                                        <td id="Vit">0</td>
+                                        <td id="Armor">0</td>
+                                        <td id="HP">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
                     </tr>
-                </tbody>
-            </table>
-            <table id="secStats">
-                <thead>
                     <tr>
-                        <th>Avg DPS</th>
-                        <th>Avg Dmg Reduction</th>
-                        <th>Effective Health</th>
-                    </tr>
-                </thead>
-                <tbody>
+                        <td>
+                            <table id="secStats">
+                                <thead>
+                                    <tr>
+                                        <th>Avg DPS</th>
+                                        <th>Avg Dmg Reduction</th>
+                                        <th>Effective Health</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="AvgDPS">0</td>
+                                        <td id="AvgDmgRed">0</td>
+                                        <td id="EH">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                	</tr>
+				</tbody>
+                <tfoot>
                     <tr>
-                        <td id="AvgDPS">0</td>
-                        <td id="AvgDmgRed">0</td>
-                        <td id="EH">0</td>
+                        <td class="tableDetails">show details</td>
                     </tr>
-                </tbody>
-            </table>
+                </tfoot>
+			</table>
         </div>
 	</div>
     
@@ -73,7 +94,7 @@
     	<table class="tableTitle">
         	<thead>
             	<tr>
-                	<th class="tableTitle">Weapon Stats</th>
+                	<th class="tableTitle">Weapon</th>
                 </tr>
             </thead>
             <tbody>
@@ -221,6 +242,7 @@
         </table>
 	</div>
     <script type="text/javascript"> 
+		$(document).ready(updateChar());
 		$("form#charInfo").change( function() { updateChar(); });
 	</script>
     
