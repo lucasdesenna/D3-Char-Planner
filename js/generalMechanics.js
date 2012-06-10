@@ -14,6 +14,11 @@ var charAvgDPS;
 var charArmorDmgRed;
 var charAvgResDmgRed;
 var charEHP;
+/*Weapon*/
+var weaponType;
+var weaponAtkSpd;
+var weaponMaxDmg;
+var weaponMinDmg;
 /*Equips*/
 var equipList;
 /*-----------------------------------*/
@@ -27,8 +32,10 @@ function updateChar() {
 	charClass = $("select#charClass option:selected").val();
 	getBaseStats();
 	getEquipStats();
+	getWeaponData();
 	getTotalArmor();
 	getHP();
+	getDPS();
 	updateStats();
 }
 
@@ -84,4 +91,18 @@ function getHP() {
 
 function getArmorDmgRed() {
 	
+}
+
+function getWeaponData() {
+	weaponType = $("select#weaponType").html();
+	weaponAtkSpd = parseFloat($("select#weaponType option:selected").val());
+	if($("#weaponMaxDmg").val()) { weaponMaxDmg = parseInt($("#weaponMaxDmg").val()); }
+	else { weaponMaxDmg = 0; }
+	if($("#weaponMinDmg").val()) { weaponMinDmg = parseInt($("#weaponMinDmg").val()); }
+	else { weaponMinDmg = 0; }
+}
+
+function getDPS() {
+	charAvgDPS = (weaponMinDmg * weaponAtkSpd + weaponMaxDmg * weaponAtkSpd)/2;
+	$("#avgDPS").html(charAvgDPS);
 }
