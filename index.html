@@ -26,7 +26,7 @@
                     <option>Witch Doctor</option>
                     <option selected="selected">Wizard</option>
                 </select>
-                <input id="charLevel" value="60" />
+                <input id="charLevel" type="number" max="60" min="1" value="60"/>
             </form>
             <a class="tab selected" href="">Statistics</a>
             <div class="spacer"></div>
@@ -95,7 +95,7 @@
         </div>
 	</div>
     
-    <div id="content">
+    <form id="content">
     	<table class="tableTitle">
         	<thead>
             	<tr>
@@ -142,8 +142,8 @@
                                 	</td>
                                     <td><input id="weaponMaxDmg" placeholder="0" /></td>
                                     <td><input id="weaponMinDmg" placeholder="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this)">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this)">Add Buff</button></ul></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -173,71 +173,71 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="equip">
                                     <th>Helmet</th>
-                                    <td><input id="helmetArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="helmetArmor" class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Amulet</th>
-                                    <td><input id="amuletArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="amuletArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Shoulders</th>
-                                    <td><input id="shouldersArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="shouldersArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Chest</th>
-                                    <td><input id="chestArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="chestArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Bracers</th>
-                                    <td><input id="bracersArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="bracersArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Gloves</th>
-                                    <td><input id="glovesArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="glovesArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Left Ring</th>
-                                    <td><input id="lRingArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="lRingArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Right Ring</th>
-                                    <td><input id="rRingArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="rRingArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Belt</th>
-                                    <td><input id="beltArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="beltArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Pants</th>
-                                    <td><input id="pantsArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="pantsArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
-                                <tr>
+                                <tr class="equip">
                                     <th>Boots</th>
-                                    <td><input id="bootsArmor" value="0" /></td>
-                                    <td><ul><button class="addButton">Add Stat</button></ul></td>
-                                    <td><ul><button class="addButton">Add Buff</button></ul></td>
+                                    <td><input id="bootsArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
+                                    <td><ul><button class="addButton" onclick="createStat(this); return false;">Add Stat</button></ul></td>
+                                    <td><ul><button class="addButton" onclick="createBuff(this); return false;">Add Buff</button></ul></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -245,10 +245,18 @@
                 </tr>
             </tbody>
         </table>
-	</div>
-    <script type="text/javascript"> 
-		$(document).ready(updateChar());
-		$("form#charInfo").change( function() { updateChar(); });
+	</form>
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$("form").bind("keypress", function(e) {
+				if (e.keyCode == 13) {                 
+					 return false;
+				}
+			});
+			$("form#charInfo").change( function() { updateChar(); });
+			$("form#content").change( function() { updateChar(); });
+			updateChar();
+		 });
 	</script>
     
 </body>

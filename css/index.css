@@ -7,14 +7,14 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 75%;
-	background-color: #DDD;
+	background-color: #FFF;
 }
 
 #header {
 	position:fixed;
 	top: 0;
 	width:100%;
-	background-color: #DDD;
+	background-color: #FFF;
 }
 
 #header a {
@@ -43,7 +43,7 @@ form#charInfo {
 }
 
 input#charLevel {
-	width: 2em;
+	width: 2.5em;
 	text-align: center;
 }
 
@@ -148,13 +148,8 @@ table#equips tr td:first-child, table#equips tr th:first-child {
 
 table#equips tr td input {
 	width: 98%;
+	height: 100%;
 	text-align: center;
-}
-
-button.addButton {
-	width: 100%;
-	text-align: center;
-	cursor: pointer;
 }
 
 table#equips thead tr th:first-child {
@@ -165,4 +160,34 @@ table#equips thead tr th:first-child {
 table#equips tbody tr th:first-child {
 	color: #FFF;
 	background-color: #39F;
+}
+
+table#equips ul {
+	list-style: none;
+}
+
+table#equips ul li {
+	margin-top: 2px
+}
+
+table#equips ul li select {
+	display: inline-block;
+	width: 54px;
+}
+
+table#equips ul li input {
+	display: inline-block;
+	width: 156px;
+	margin-right: 2px;
+}
+
+table#equips ul li button {
+	display: inline-block;
+	width: 20px; 
+}
+
+button.addButton {
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
 }
