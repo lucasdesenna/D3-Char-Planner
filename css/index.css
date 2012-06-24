@@ -136,8 +136,32 @@ table#secStats td{
 	width: 33%;
 }
 
-table#weapon tr td, table#weapons tr th {
+/*table#weapons tr td, table#weapons tr th {
 	width: 20%;
+}*/
+
+table#weapons .itemCol {
+	width: 146px;
+}
+
+table#weapons .mainAttCol {
+	width: 64px;
+}
+
+table#weapons .attCol {
+	width: 132px;
+}
+
+table#weapons .buffCol {
+ width: 378px;
+}
+
+table#weapons .buffCol select {
+	width: 300px;
+}
+
+table#weapons td input {
+	width: 94%;
 }
 
 table#weapons ul li select {
@@ -147,7 +171,7 @@ table#weapons ul li select {
 
 table#weapons ul li input {
 	display: inline-block;
-	width: 76px;
+	width: 50px;
 	margin-right: 2px;
 }
 
@@ -156,8 +180,28 @@ table#weapons ul li button {
 	width: 20px; 
 }
 
-table#equips tr td, table#equips tr th {
+/*table#equips tr td, table#equips tr th {
 	width: 30%;
+}*/
+
+table#equips .itemCol {
+	width: 146px;
+}
+
+table#equips .mainAttCol {
+	width: 64px;
+}
+
+table#equips .attCol {
+	width: 132px;
+}
+
+table#equips .buffCol select {
+	width: 434px;
+}
+
+table#equips td input {
+	width: 94%;
 }
 
 table#equips tr td:first-child, table#equips tr th:first-child {
@@ -176,6 +220,7 @@ table#equips tbody tr th:first-child {
 
 table ul {
 	list-style: none;
+	padding: 2px 0;
 }
 
 table ul li {
@@ -189,7 +234,7 @@ table#equips ul li select {
 
 table#equips ul li input {
 	display: inline-block;
-	width: 156px;
+	width: 50px;
 	margin-right: 2px;
 }
 

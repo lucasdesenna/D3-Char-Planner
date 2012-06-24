@@ -48,8 +48,8 @@ function getBaseStats() {
 }
 
 function getEquipStats() {
-	var keyList = $(".equipStat").find("select option:selected");
-	var valueList = $(".equipStat").find("input");
+	var keyList = $(".equipAtt").find("select option:selected");
+	var valueList = $(".equipAtt").find("input");
 	for( var i = 0; i < keyList.length; i++ ) {
 		var key = $(keyList[i]).val();
 		if( key == "Str" ) { charStr += parseInt($(valueList[i]).val()); }
