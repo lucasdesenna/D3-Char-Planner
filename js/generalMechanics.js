@@ -1,35 +1,37 @@
-var charLevel = 60;
-var charName;
-var charClass;
+var char = new Array;
+	char["level"] = 60;
+    char["name"];
+	char["class"];
 /*Main Stats*/
-var charStr;
-var charDex;
-var charInt;
-var charVit;
-var charArmor;
-var charAvgRes;
-var charHP;
+	char["str"];
+	char["dex"];
+	char["int"];
+	char["vit"];
+	char["armor"];
+	char["avgRes"];
+	char["hp"];
 /*Secondary Stats*/
-var charAvgDPS;
-var charArmorDmgRed;
-var charAvgResDmgRed;
-var charEHP;
+	char["avgDPS"];
+	char["armorDmgRed"];
+	char["avgResDmgRed"];
+	char["ehp"];
 /*Weapon*/
-var weaponType;
-var weaponAtkSpd;
-var weaponMaxDmg;
-var weaponMinDmg;
+var weapon = new Array;
+	weapon["type"];
+	weapon["atkSpd"];
+	weapon["maxDmg"];
+	weapon["minDmg"];
 /*Equips*/
 var equipList;
 /*-----------------------------------*/
 
 function updateChar() {
-	charLevel = parseInt($("input#charLevel").val());
-	if( charLevel > 60 ) { charLevel = 60; }
-	if( charLevel < 1 ) { charLevel = 1; }
-	$("input#charLevel").val(charLevel.toString());
-	charName = $("input#charName").val();
-	charClass = $("select#charClass option:selected").val();
+	char["level"] = parseInt($("input#charLevel").val());
+	if( char["level"] > 60 ) { char["level"] = 60; }
+	if( char["level"] < 1 ) { char["level"] = 1; }
+	$("input#charLevel").val(char["level"].toString());
+	char["name"] = $("input#charName").val();
+	char["class"] = $("select#charClass option:selected").val();
 	getBaseStats();
 	getEquipStats();
 	getWeaponData();
@@ -40,11 +42,11 @@ function updateChar() {
 }
 
 function getBaseStats() {
-	if(charClass == "Barbarian") { barbGen(); }
-	if(charClass == "Demon Hunter") { dhGen(); }
-	if(charClass == "Monk") { monkGen(); }
-	if(charClass == "Witch Doctor") { wdGen(); }
-	if(charClass == "Wizard") { wizGen(); }
+	if(char["class"] == "Barbarian") { barbGen(); }
+	if(char["class"] == "Demon Hunter") { dhGen(); }
+	if(char["class"] == "Monk") { monkGen(); }
+	if(char["class"] == "Witch Doctor") { wdGen(); }
+	if(char["class"] == "Wizard") { wizGen(); }
 }
 
 function getEquipStats() {
@@ -52,20 +54,20 @@ function getEquipStats() {
 	var valueList = $(".equipAtt").find("input");
 	for( var i = 0; i < keyList.length; i++ ) {
 		var key = $(keyList[i]).val();
-		if( key == "Str" ) { charStr += parseInt($(valueList[i]).val()); }
-		if( key == "Dex" ) { charDex += parseInt($(valueList[i]).val()); }
-		if( key == "Int" ) { charInt += parseInt($(valueList[i]).val()); }
-		if( key == "Vit" ) { charVit += parseInt($(valueList[i]).val()); }
+		if( key == "Str" ) { char["str"] += parseInt($(valueList[i]).val()); }
+		if( key == "Dex" ) { char["dex"] += parseInt($(valueList[i]).val()); }
+		if( key == "Int" ) { char["int"] += parseInt($(valueList[i]).val()); }
+		if( key == "Vit" ) { char["vit"] += parseInt($(valueList[i]).val()); }
 	}
 }
 
 function updateStats() {
-	$("#Str").html(charStr);
-	$("#Dex").html(charDex);
-	$("#Int").html(charInt);
-	$("#Vit").html(charVit);
-	$("#HP").html(charHP);
-	$("#Armor").html(charArmor);
+	$("#Str").html(char["str"]);
+	$("#Dex").html(char["dex"]);
+	$("#Int").html(char["int"]);
+	$("#Vit").html(char["vit"]);
+	$("#HP").html(char["hp"]);
+	$("#Armor").html(char["armor"]);
 }
 
 function getEquipArmor() {
@@ -81,12 +83,12 @@ function getEquipArmor() {
 }
 
 function getTotalArmor() {
-	charArmor = charStr + getEquipArmor();
+	char["armor"] = char["str"] + getEquipArmor();
 }
 
 function getHP() {
-	if(charLevel > 35) { charHP = charVit * (charLevel - 25) + 36 + charLevel * 4; }
-	else { charHP = charVit * 10 + 36 + charLevel * 4; }
+	if(char["level"] > 35) { char["hp"] = char["vit"] * (char["level"] - 25) + 36 + char["level"] * 4; }
+	else { char["hp"] = char["vit"] * 10 + 36 + char["level"] * 4; }
 }
 
 function getArmorDmgRed() {
