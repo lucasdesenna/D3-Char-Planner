@@ -1,6 +1,6 @@
 function wizGen() {
-	charStr = 7 + charLevel;
-	charDex = 7 + charLevel;
-	charInt = 7 + 3 * charLevel;
-	charVit = 7 + 2 * charLevel;
+	char["str"] = 7 + char["level"];
+	char["dex"] = 7 + char["level"];
+	char["int"] = 7 + 3 * char["level"];
+	char["vit"] = 7 + 2 * char["level"];
 }

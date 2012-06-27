@@ -22,7 +22,7 @@ var weapon = new Array;
 	weapon["maxDmg"];
 	weapon["minDmg"];
 /*Equips*/
-var equipList;
+var equips = new Array;;
 /*-----------------------------------*/
 
 function updateChar() {
@@ -32,8 +32,8 @@ function updateChar() {
 	$("input#charLevel").val(char["level"].toString());
 	char["name"] = $("input#charName").val();
 	char["class"] = $("select#charClass option:selected").val();
-	getBaseStats();
-	getEquipStats();
+	getCharData();
+	getEquipData();
 	getWeaponData();
 	getTotalArmor();
 	getHP();
@@ -41,7 +41,7 @@ function updateChar() {
 	updateStats();
 }
 
-function getBaseStats() {
+function getCharData() {
 	if(char["class"] == "Barbarian") { barbGen(); }
 	if(char["class"] == "Demon Hunter") { dhGen(); }
 	if(char["class"] == "Monk") { monkGen(); }
@@ -49,15 +49,35 @@ function getBaseStats() {
 	if(char["class"] == "Wizard") { wizGen(); }
 }
 
-function getEquipStats() {
-	var keyList = $(".equipAtt").find("select option:selected");
-	var valueList = $(".equipAtt").find("input");
-	for( var i = 0; i < keyList.length; i++ ) {
-		var key = $(keyList[i]).val();
-		if( key == "Str" ) { char["str"] += parseInt($(valueList[i]).val()); }
-		if( key == "Dex" ) { char["dex"] += parseInt($(valueList[i]).val()); }
-		if( key == "Int" ) { char["int"] += parseInt($(valueList[i]).val()); }
-		if( key == "Vit" ) { char["vit"] += parseInt($(valueList[i]).val()); }
+function getWeaponData() {
+	weaponType = $("select#weaponType").html();
+	weaponAtkSpd = parseFloat($("select#weaponType option:selected").val());
+	if($("#weaponMaxDmg").val()) { weaponMaxDmg = parseInt($("#weaponMaxDmg").val()); }
+	else { weaponMaxDmg = 0; }
+	if($("#weaponMinDmg").val()) { weaponMinDmg = parseInt($("#weaponMinDmg").val()); }
+	else { weaponMinDmg = 0; }
+}
+
+function getEquipData() {
+	var equipList = $(document).find("tr.equip");
+	for( var i = 0; i < equipList.length; i++ ) {
+		var itemName = $(equipList[i]).find("th.itemCol");
+		itemName = $(itemName[0]).html();
+		equips[itemName] = new Array;
+		var itemArmor = $(equipList[i]).find("input.equipArmor");
+		equips[itemName]["armor"] = parseInt($(itemArmor[0]).val());
+		
+		var attList = $(equipList[i]).find("li.equipAtt select option:selected");
+		var attValueList = $(equipList[i]).find("li.equipAtt input");
+		for(j = 0; j < attList.length; j++) {
+			equips[itemName][$(attList[j]).val()] = parseInt($(attValueList[j]).val());
+		}
+		
+		var buffList = $(equipList[i]).find("li.equipAtt select option:selected");
+		var buffValueList = $(equipList[i]).find("li.equipAtt input");
+		for(k = 0; k < buffList.length; k++) {
+			equips[itemName][$(buffList[k]).val()] = parseInt($(attValueList[k]).val());
+		}
 	}
 }
 
@@ -93,15 +113,6 @@ function getHP() {
 
 function getArmorDmgRed() {
 	
-}
-
-function getWeaponData() {
-	weaponType = $("select#weaponType").html();
-	weaponAtkSpd = parseFloat($("select#weaponType option:selected").val());
-	if($("#weaponMaxDmg").val()) { weaponMaxDmg = parseInt($("#weaponMaxDmg").val()); }
-	else { weaponMaxDmg = 0; }
-	if($("#weaponMinDmg").val()) { weaponMinDmg = parseInt($("#weaponMinDmg").val()); }
-	else { weaponMinDmg = 0; }
 }
 
 function getDPS() {
