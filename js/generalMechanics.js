@@ -1,4 +1,4 @@
-var char = new Array;
+var char = new Object;
 	char["level"] = 60;
     char["name"];
 	char["class"];
@@ -16,13 +16,13 @@ var char = new Array;
 	char["avgResDmgRed"];
 	char["ehp"];
 /*Weapon*/
-var weapon = new Array;
+var weapon = new Object;
 	weapon["type"];
 	weapon["atkSpd"];
 	weapon["maxDmg"];
 	weapon["minDmg"];
 /*Equips*/
-var equips = new Array;;
+var equips = new Object;
 /*-----------------------------------*/
 
 function updateChar() {
@@ -36,6 +36,7 @@ function updateChar() {
 	getEquipData();
 	getWeaponData();
 	getTotalArmor();
+	getTotalAtt();
 	getHP();
 	getDPS();
 	updateStats();
@@ -60,23 +61,23 @@ function getWeaponData() {
 
 function getEquipData() {
 	var equipList = $(document).find("tr.equip");
-	for( var i = 0; i < equipList.length; i++ ) {
+	for( var i in equipList ) {
 		var itemName = $(equipList[i]).find("th.itemCol");
 		itemName = $(itemName[0]).html();
-		equips[itemName] = new Array;
+		if(!equips[itemName]) { equips[itemName] = new Object; }
 		var itemArmor = $(equipList[i]).find("input.equipArmor");
 		equips[itemName]["armor"] = parseInt($(itemArmor[0]).val());
 		
 		var attList = $(equipList[i]).find("li.equipAtt select option:selected");
 		var attValueList = $(equipList[i]).find("li.equipAtt input");
-		for(j = 0; j < attList.length; j++) {
+		for( var j in attList) {
 			equips[itemName][$(attList[j]).val()] = parseInt($(attValueList[j]).val());
 		}
 		
 		var buffList = $(equipList[i]).find("li.equipAtt select option:selected");
 		var buffValueList = $(equipList[i]).find("li.equipAtt input");
-		for(k = 0; k < buffList.length; k++) {
-			equips[itemName][$(buffList[k]).val()] = parseInt($(attValueList[k]).val());
+		for( var k in buffList) {
+			equips[itemName][$(buffList[k]).val()] = parseInt($(buffValueList[k]).val());
 		}
 	}
 }
@@ -93,13 +94,27 @@ function updateStats() {
 function getEquipArmor() {
 	var equipArmor = 0;
 	var equipList = $(".equipArmor");
-	for( var i = 0; i < equipList.length; i++ ) {
+	for( var i in equiList ) {
 		if (parseInt($(equipList[i]).val()) > 0) {
 			equipArmor += parseInt($(equipList[i]).val());
 		}
 	}
 	
 	return equipArmor;
+}
+
+function getTotalAtt() {
+	var equipList = [];
+	for( var i in equips) {
+		if( equips.hasOwnProperty(i) ) { equipList.push(i); }
+	}
+	
+	for( var j in equipList ) {
+		char["str"] += equipList[j]["str"];
+		char["dex"] += equipList[j]["dex"];
+		char["int"] += equipList[j]["int"];
+		char["vit"] += equipList[j]["vit"];
+	}
 }
 
 function getTotalArmor() {
