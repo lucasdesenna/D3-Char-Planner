@@ -116,7 +116,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<tr>
+                            	<tr id="mainWeapon">
                                 	<td class="itemCol">
                                     	<select id="weaponType">
                                             <option value="1.2" selected="selected">Default Weapon</option>
@@ -148,7 +148,8 @@
                                 <tr>
                                 	<td class="itemCol">
                                     	<select id="offHandType">
-                                        	<option value="shield" selected="selected">Shield</option>
+                                        	<option value="none" selected="selected">None</option>
+                                            <option value="shield">Shield</option>
                                             <option value="nWeapon">Mojo</option>
                                             <option value="nWeapon">Source of Power</option>
                                             <option value="nWeapon">Quiver</option>
@@ -164,8 +165,8 @@
                                             <option value="1.4">Wand</option>
                                         </select>
                                 	</td>
-                                    <td class="mainAttCol"><input id="weaponMaxDmg" placeholder="0" /></td>
-                                    <td class="mainAttCol"><input id="weaponMinDmg" placeholder="0" /></td>
+                                    <td class="mainAttCol"><input id="maxDmgBonus" placeholder="0" /></td>
+                                    <td class="mainAttCol"><input id="minDmgBonus" placeholder="0" /></td>
                                     <td class="attCol"><ul><button class="addButton" onclick="createAtt(this); return false;">Add Attribute</button></ul></td>
                                     <td class="buffCol"><ul><button class="addButton" onclick="createBuff(this, 'Off'); return false;">Add Buff</button></ul></td>
                                 </tr>
@@ -228,7 +229,7 @@
                                     <td class="buffCol"><ul><button class="addButton" onclick="createBuff(this, 'Armor'); return false;">Add Buff</button></ul></td>
                                 </tr>
                                 <tr class="equip">
-                                    <th>Gloves</th>
+                                    <th class="itemCol">Gloves</th>
                                     <td><input id="glovesArmor"  class="equipArmor" type="number" min="0" placeholder="0" /></td>
                                     <td class="attCol"><ul><button class="addButton" onclick="createAtt(this); return false;">Add Attribute</button></ul></td>
                                     <td class="buffCol"><ul><button class="addButton" onclick="createBuff(this, 'Armor'); return false;">Add Buff</button></ul></td>
