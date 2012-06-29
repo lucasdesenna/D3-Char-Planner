@@ -9,6 +9,7 @@ var char = {};
 var weapon = {};
 /*Equips*/
 var equips = {};
+equips["itemList"] = [ "Helmet", "Amulet", "Shoulders", "Chest", "Bracers", "Gloves", "Left Ring", "Right Ring", "Belt", "Pants", "Boots" ];
 /*-----------------------------------*/
 
 function updateChar() {
@@ -21,9 +22,10 @@ function updateChar() {
 	getCharData();
 	getEquipData();
 	getWeaponData();
-	getTotalArmor();
-	getTotalAtt();
-	getHP();
+	calcTotalAtt();
+	calcDPS();
+	calcTotalArmor();
+	calcHP();
 	updateStats();
 }
 
@@ -36,23 +38,24 @@ function getCharData() {
 }
 
 function getWeaponData() {
-	weapon["type"] = $("select#weaponType").html();
-	weapon["atkSpd"] = parseFloat($("select#weaponType option:selected").val());
+	weapon["type"] = $("select#weaponType option:selected").html();
+	weapon["baseAtkSpd"] = parseFloat($("select#weaponType option:selected").val());
 	if($("#weaponMaxDmg").val()) { weapon["maxDmg"] = parseInt($("#weaponMaxDmg").val()); }
 	else { weapon["maxDmg"] = 0; }
 	if($("#weaponMinDmg").val()) { weapon["minDmg"] = parseInt($("#weaponMinDmg").val()); }
 	else {weapon["minDmg"] = 0; }
 	var attList = $("tr#mainWeapon").find("li.equipAtt select option:selected");
-		var attValueList = $("tr#mainWeapon").find("li.equipAtt input");
-		for( var j = 0; j < attList.length; j++ ) {
-			weapon[$(attList[j]).val()] = parseInt($(attValueList[j]).val());
-		}
+	var attValueList = $("tr#mainWeapon").find("li.equipAtt input");
+	for( var j = 0; j < attList.length; j++ ) {
+		weapon[$(attList[j]).val()] = parseInt($(attValueList[j]).val());
+	}
 		
 	var buffList = $("tr#mainWeapon").find("li.equipBuff select option:selected");
 	var buffValueList = $("tr#mainWeapon").find("li.equipBuff input");
 	for( var k = 0; k < buffList.length; k++ ) {
-		equips[$(buffList[k]).val()] = parseInt($(buffValueList[k]).val());
+		weapon[$(buffList[k]).val()] = parseInt($(buffValueList[k]).val());
 	}
+	if(!weapon["atkSpd"]) { weapon["atkSpd"] = 0; }
 }
 
 function getEquipData() {
@@ -99,29 +102,25 @@ function getEquipArmor() {
 	return equipArmor;
 }
 
-function getTotalAtt() {
+function calcTotalAtt() {
 	if (weapon["str"]) { char["str"] += weapon["str"]; }
 	if (weapon["dex"]) { char["dex"] += weapon["dex"]; }
 	if (weapon["int"]) { char["int"] += weapon["int"]; }
 	if (weapon["vit"]) { char["vit"] += weapon["vit"]; }
-	
-	var keyList = new Array;
-	for( var key in equips ) {
-		keyList.push(key);
-	}	
-	for( var i = 0; i < keyList.length; i++ ) {
-		if (equips[keyList[i]]["str"]) { char["str"] += equips[keyList[i]]["str"]; }
-		if (equips[keyList[i]]["dex"]) { char["dex"] += equips[keyList[i]]["dex"]; }
-		if (equips[keyList[i]]["int"]) { char["int"] += equips[keyList[i]]["int"]; }
-		if (equips[keyList[i]]["vit"]) { char["vit"] += equips[keyList[i]]["vit"]; }
+		
+	for( var i = 0; i < equips["itemList"].length; i++ ) {
+		if (equips[equips["itemList"][i]]["str"]) { char["str"] += equips[equips["itemList"][i]]["str"]; }
+		if (equips[equips["itemList"][i]]["dex"]) { char["dex"] += equips[equips["itemList"][i]]["dex"]; }
+		if (equips[equips["itemList"][i]]["int"]) { char["int"] += equips[equips["itemList"][i]]["int"]; }
+		if (equips[equips["itemList"][i]]["vit"]) { char["vit"] += equips[equips["itemList"][i]]["vit"]; }
 	}
 }
 
-function getTotalArmor() {
+function calcTotalArmor() {
 	char["armor"] = char["str"] + getEquipArmor();
 }
 
-function getHP() {
+function calcHP() {
 	if(char["level"] > 35) { char["hp"] = char["vit"] * (char["level"] - 25) + 36 + char["level"] * 4; }
 	else { char["hp"] = char["vit"] * 10 + 36 + char["level"] * 4; }
 }
@@ -130,7 +129,39 @@ function getArmorDmgRed() {
 	
 }
 
-function getDPS() {
-	charAvgDPS = (weaponMinDmg * weaponAtkSpd + weaponMaxDmg * weaponAtkSpd)/2;
-	$("#avgDPS").html(charAvgDPS);
+function getEquipDPSData() {
+	var equipDPSData = {};
+	equipDPSData["maxDmg"] = 0;
+	equipDPSData["minDmg"] = 0;
+	equipDPSData["atkSpd"] = 0;
+	equipDPSData["critChance"] = 0;
+	equipDPSData["critDmg"] = 0;
+	
+	for( var i = 0; i < equips["itemList"].length; i++ ) {
+		if (equips[equips["itemList"][i]]["maxDmg"]) { equipDPSData["maxDmg"] += equips[equips["itemList"][i]]["maxDmg"]; }
+		if (equips[equips["itemList"][i]]["minDmg"]) { equipDPSData["minDmg"] += equips[equips["itemList"][i]]["minDmg"]; }
+		if (equips[equips["itemList"][i]]["atkSpd"]) { equipDPSData["atkSpd"] += equips[equips["itemList"][i]]["atkSpd"]; }
+		if (equips[equips["itemList"][i]]["critChance"]) { equipDPSData["critChance"] += equips[equips["itemList"][i]]["critChance"]; }
+		if (equips[equips["itemList"][i]]["critDmg"]) { equipDPSData["critDmg"] += equips[equips["itemList"][i]]["critDmg"]; }
+	}
+	
+	return equipDPSData;
+}
+
+function calcDPS() {
+	var equipDPSData = getEquipDPSData();
+	
+	var avgDmg = (weapon["maxDmg"] + equipDPSData["maxDmg"]) + (weapon["minDmg"] + equipDPSData["minDmg"]) / 2;
+	var weaponAPS = weapon["baseAtkSpd"] * (1 + weapon["atkSpd"] / 100);
+	var nonWeaponAPS = 1 + equipDPSData["atkSpd"] / 100;
+	var avgCritDmg = (1.5 + equipDPSData["critDmg"] / 100) * (0.05 + equipDPSData["critChance"] / 100);
+	var mainAttBonus = 1 + char[char["mainAtt"]]/100;
+	
+	char["avgDPS"] = avgDmg * weaponAPS * nonWeaponAPS * avgCritDmg * mainAttBonus;
+	$("#avgDPS").html(Math.round(char["avgDPS"]));
+}
+
+function saveChar() {
+	var saveData = JSON.stringify(char);
+	saveData.execCommand('SaveAs', false, 'C:\\foobar.txt');
 }
