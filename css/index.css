@@ -23,6 +23,10 @@ body {
 	text-decoration: none;
 }
 
+#header button {
+	padding: 1px 8px;
+}
+
 .wrapper {
 	width: 800px;
 	margin: 0 auto;

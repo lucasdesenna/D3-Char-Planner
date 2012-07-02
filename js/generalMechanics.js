@@ -92,11 +92,8 @@ function updateStats() {
 
 function getEquipArmor() {
 	var equipArmor = 0;
-	var equipList = $(".equipArmor");
-	for( var i = 0; i < equipList.length; i++ ) {
-		if (parseInt($(equipList[i]).val()) > 0) {
-			equipArmor += parseInt($(equipList[i]).val());
-		}
+	for( var i = 0; i < equips["itemList"].length; i++ ) {
+		equipArmor += equips["itemList"][i]["armor"];
 	}
 	
 	return equipArmor;
@@ -162,6 +159,23 @@ function calcDPS() {
 }
 
 function saveChar() {
-	var saveData = JSON.stringify(char);
-	saveData.execCommand('SaveAs', false, 'C:\\foobar.txt');
+	localStorage.charData = JSON.stringify(char);
+	localStorage.weaponData = JSON.stringify(weapon);
+	localStorage.equipsData = JSON.stringify(equips);
+}
+
+function loadChar() {
+	var charData = JSON.parse(localStorage.charData);
+	var weaponData = JSON.parse(localStorage.weaponData);
+	var equipsData = JSON.parse(localStorage.equipsData);
+	charData.weapons = weaponData;
+	charData.equips = equipsData;
+	char = charData;
+	updateStats();
+}
+
+function rebuildWeaponAndEquips(charData) {
+	for( var i = 0; i < equips["itemList"].length; i++) {
+		equips["itemList"][i]
+	}
 }
