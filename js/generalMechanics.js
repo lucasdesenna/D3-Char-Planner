@@ -9,7 +9,7 @@ var char = {};
 var weapon = {};
 /*Equips*/
 var equips = {};
-equips["itemList"] = [ "Helmet", "Amulet", "Shoulders", "Chest", "Bracers", "Gloves", "Left Ring", "Right Ring", "Belt", "Pants", "Boots" ];
+equips["iDList"] = [ "#helmet", "#amulet", "#shoulders", "#chest", "#bracers", "#gloves", "#leftRing", "#rightRing", "#belt", "#pants", "#boots" ];
 /*-----------------------------------*/
 
 function updateChar() {
@@ -61,7 +61,7 @@ function getWeaponData() {
 function getEquipData() {
 	var equipList = $.find("tr.equip");
 	for( var i = 0; i < equipList.length; i++ ) {
-		var itemName = $(equipList[i]).find("th.itemCol");
+		var itemName = $(equipList[i]);
 		itemName = $(itemName[0]).html();
 		if(!equips[itemName]) { equips[itemName] = new Object; }
 		var itemArmor = $(equipList[i]).find("input.equipArmor");
@@ -92,8 +92,8 @@ function updateStats() {
 
 function getEquipArmor() {
 	var equipArmor = 0;
-	for( var i = 0; i < equips["itemList"].length; i++ ) {
-		equipArmor += equips["itemList"][i]["armor"];
+	for( var i = 0; i < equips["iDList"].length; i++ ) {
+		equipArmor += equips["iDList"][i]["armor"];
 	}
 	
 	return equipArmor;
@@ -105,11 +105,11 @@ function calcTotalAtt() {
 	if (weapon["int"]) { char["int"] += weapon["int"]; }
 	if (weapon["vit"]) { char["vit"] += weapon["vit"]; }
 		
-	for( var i = 0; i < equips["itemList"].length; i++ ) {
-		if (equips[equips["itemList"][i]]["str"]) { char["str"] += equips[equips["itemList"][i]]["str"]; }
-		if (equips[equips["itemList"][i]]["dex"]) { char["dex"] += equips[equips["itemList"][i]]["dex"]; }
-		if (equips[equips["itemList"][i]]["int"]) { char["int"] += equips[equips["itemList"][i]]["int"]; }
-		if (equips[equips["itemList"][i]]["vit"]) { char["vit"] += equips[equips["itemList"][i]]["vit"]; }
+	for( var i = 0; i < equips["iDList"].length; i++ ) {
+		if (equips["iDList"][i]["str"]) { char["str"] += equips["iDList"][i]["str"]; }
+		if (equips["iDList"][i]["dex"]) { char["dex"] += equips["iDList"][i]["dex"]; }
+		if (equips["iDList"][i]["int"]) { char["int"] += equips["iDList"][i]["int"]; }
+		if (equips["iDList"][i]["vit"]) { char["vit"] += equips["iDList"][i]["vit"]; }
 	}
 }
 
@@ -134,12 +134,12 @@ function getEquipDPSData() {
 	equipDPSData["critChance"] = 0;
 	equipDPSData["critDmg"] = 0;
 	
-	for( var i = 0; i < equips["itemList"].length; i++ ) {
-		if (equips[equips["itemList"][i]]["maxDmg"]) { equipDPSData["maxDmg"] += equips[equips["itemList"][i]]["maxDmg"]; }
-		if (equips[equips["itemList"][i]]["minDmg"]) { equipDPSData["minDmg"] += equips[equips["itemList"][i]]["minDmg"]; }
-		if (equips[equips["itemList"][i]]["atkSpd"]) { equipDPSData["atkSpd"] += equips[equips["itemList"][i]]["atkSpd"]; }
-		if (equips[equips["itemList"][i]]["critChance"]) { equipDPSData["critChance"] += equips[equips["itemList"][i]]["critChance"]; }
-		if (equips[equips["itemList"][i]]["critDmg"]) { equipDPSData["critDmg"] += equips[equips["itemList"][i]]["critDmg"]; }
+	for( var i = 0; i < equips["iDList"].length; i++ ) {
+		if (equips["iDList"][i]["maxDmg"]) { equipDPSData["maxDmg"] += equips["iDList"][i]["maxDmg"]; }
+		if (equips["iDList"][i]["minDmg"]) { equipDPSData["minDmg"] += equips["iDList"][i]["minDmg"]; }
+		if (equips["iDList"][i]["atkSpd"]) { equipDPSData["atkSpd"] += equips["iDList"][i]["atkSpd"]; }
+		if (equips["iDList"][i]["critChance"]) { equipDPSData["critChance"] += equips["iDList"][i]["critChance"]; }
+		if (equips["iDList"][i]["critDmg"]) { equipDPSData["critDmg"] += equips["iDList"][i]["critDmg"]; }
 	}
 	
 	return equipDPSData;
@@ -175,7 +175,7 @@ function loadChar() {
 }
 
 function rebuildWeaponAndEquips(charData) {
-	for( var i = 0; i < equips["itemList"].length; i++) {
-		equips["itemList"][i]
+	for( var i = 0; i < equips["iDList"].length; i++) {
+		equips["iDList"][i]
 	}
 }
